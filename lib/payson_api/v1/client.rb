@@ -48,7 +48,9 @@ module PaysonAPI
         {}.tap do |hash|
           params.split('&').each do |param|
             key, val = param.split('=')
-            hash[key] = URI.decode_www_form_component(val)
+            unless val.nil?
+              hash[key] = URI.decode_www_form_component(val)
+            end
           end
         end
       end
